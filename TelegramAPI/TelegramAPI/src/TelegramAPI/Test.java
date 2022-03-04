@@ -71,37 +71,40 @@ public class Test {
            }
         }*/
         
-        
-        JSONArray arr = obj.getJSONArray("result"); // notice that `"posts": [...]`
-        for (int i = 0; i < arr.length(); i++)
+        if(result)
         {
-            int update_id =  arr.getJSONObject(i).getInt("update_id");
-            
-            JSONObject arrmess = arr.getJSONObject(i).getJSONObject("message");
-            String text = arrmess.getString("text");
-            int date =  arrmess.getInt("date");
+            JSONArray arr = obj.getJSONArray("result"); // notice that `"posts": [...]`
+            for (int i = 0; i < arr.length(); i++)
+            {
+                int update_id =  arr.getJSONObject(i).getInt("update_id");
 
-            
-            JSONObject arrFrom = arr.getJSONObject(i).getJSONObject("message").getJSONObject("from");
-            int idFrom = arrFrom.getInt("id");
-            boolean is_botFrom = arrFrom.getBoolean("is_bot");
-            String first_nameFrom = arrFrom.getString("first_name");
-            String usernameFrom = arrFrom.getString("username");
-            String language_codeFrom = arrFrom.getString("language_code");
-            f.popola(i, is_botFrom, first_nameFrom, usernameFrom, language_codeFrom);
-            
-            JSONObject arrChat = arr.getJSONObject(i).getJSONObject("message").getJSONObject("chat");;
-            int idChat = arrChat.getInt("id");
-            String first_nameChat = arrChat.getString("first_name");
-            String usernameChat = arrChat.getString("username");
-            String type = arrChat.getString("type");
-            c.popola(i, first_nameChat, usernameFrom, type);
-            
-            
-            inf.popola(update_id, update_id, idChat, text, inf, c);
-            
-            m.add(inf);
+                JSONObject arrmess = arr.getJSONObject(i).getJSONObject("message");
+                String text = arrmess.getString("text");
+                int date =  arrmess.getInt("date");
+
+
+                JSONObject arrFrom = arr.getJSONObject(i).getJSONObject("message").getJSONObject("from");
+                int idFrom = arrFrom.getInt("id");
+                boolean is_botFrom = arrFrom.getBoolean("is_bot");
+                String first_nameFrom = arrFrom.getString("first_name");
+                String usernameFrom = arrFrom.getString("username");
+                String language_codeFrom = arrFrom.getString("language_code");
+                f.popola(i, is_botFrom, first_nameFrom, usernameFrom, language_codeFrom);
+
+                JSONObject arrChat = arr.getJSONObject(i).getJSONObject("message").getJSONObject("chat");;
+                int idChat = arrChat.getInt("id");
+                String first_nameChat = arrChat.getString("first_name");
+                String usernameChat = arrChat.getString("username");
+                String type = arrChat.getString("type");
+                c.popola(i, first_nameChat, usernameFrom, type);
+
+
+                inf.popola(update_id, update_id, idChat, text, inf, c);
+                System.out.println(inf.toString());
+                //m.add(inf);
+            }
         }
+        
 
         
         

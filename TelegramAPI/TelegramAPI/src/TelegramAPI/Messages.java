@@ -4,8 +4,11 @@
  */
 package TelegramAPI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,12 +16,11 @@ import java.util.List;
  */
 public class Messages {
     public List<Info> list=new ArrayList<Info>();  
-
-    public Messages() {
-    }
     
-    public void add(Info i){
+    public void add(Info i,int c){
         list.add(i);
     }
+ 
+
     
 }

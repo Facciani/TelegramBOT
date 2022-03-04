@@ -20,8 +20,10 @@ public class BotPubblicita {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
         
-        Test t = new Test();
-        t.getUpdate();
+        getUpdate p = new getUpdate();
+        p.start();
+        /*Test t = new Test();
+        t.getUpdate();*/
     }
     
 }

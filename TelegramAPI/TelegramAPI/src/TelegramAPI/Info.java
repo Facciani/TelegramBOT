@@ -48,9 +48,19 @@ public class Info {
         this.c = c;
     }
 
+    public int getChatId()
+    {
+        return c.getId();
+    }
+    
+    public String getText()
+    {
+        return this.text;
+    }
+    
     @Override
     public String toString() {
-        return "Info{" + "update_id=" + update_id + ", message_id=" + message_id + ", date=" + date + ", text=" + text + '}';
+        return "Info{" + "update_id=" + update_id + ", message_id=" + message_id + ", date=" + date + ", text=" + text + ", chat id=" + c.getId() + '}';
     }
 
     
