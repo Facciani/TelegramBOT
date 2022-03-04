@@ -32,17 +32,88 @@ public class Test {
     
     
     public void getUpdate() throws IOException{
+        
+        Chat c;
+        c = new Chat();
+        From f;
+        f = new From();
+        Info inf;
+        inf = new Info();
+        Messages m;
+        m = new Messages();
+        
         String jsonString = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/getUpdates");
         
         JSONObject obj = new JSONObject(jsonString);
-        String pageName = obj.getString("nome");
         
-        JSONArray arr = obj.getJSONArray("messaggi");
+        boolean result = obj.getBoolean("ok");
+
+        /*"result":[
+        {
+           "update_id":78290423,
+           "message":{
+              "message_id":5,
+              "from":{
+                 "id":5238155445,
+                 "is_bot":false,
+                 "first_name":"Facc",
+                 "username":"Fackc",
+                 "language_code":"it"
+              },
+              "chat":{
+                 "id":5238155445,
+                 "first_name":"Facc",
+                 "username":"Fackc",
+                 "type":"private"
+              },
+              "date":1646387697,
+              "text":"ciao"
+           }
+        }*/
+        
+        
+        JSONArray arr = obj.getJSONArray("result"); // notice that `"posts": [...]`
+        for (int i = 0; i < arr.length(); i++)
+        {
+            int update_id =  arr.getJSONObject(i).getInt("update_id");
+            
+            JSONObject arrmess = arr.getJSONObject(i).getJSONObject("message");
+            String text = arrmess.getString("text");
+            int date =  arrmess.getInt("date");
+
+            
+            JSONObject arrFrom = arr.getJSONObject(i).getJSONObject("message").getJSONObject("from");
+            int idFrom = arrFrom.getInt("id");
+            boolean is_botFrom = arrFrom.getBoolean("is_bot");
+            String first_nameFrom = arrFrom.getString("first_name");
+            String usernameFrom = arrFrom.getString("username");
+            String language_codeFrom = arrFrom.getString("language_code");
+            f.popola(i, is_botFrom, first_nameFrom, usernameFrom, language_codeFrom);
+            
+            JSONObject arrChat = arr.getJSONObject(i).getJSONObject("message").getJSONObject("chat");;
+            int idChat = arrChat.getInt("id");
+            String first_nameChat = arrChat.getString("first_name");
+            String usernameChat = arrChat.getString("username");
+            String type = arrChat.getString("type");
+            c.popola(i, first_nameChat, usernameFrom, type);
+            
+            
+            inf.popola(update_id, update_id, idChat, text, inf, c);
+            
+            m.add(inf);
+        }
+
+        
+        
+        
+        
+        
+        /*JSONArray arr = obj.getJSONArray("messaggi");
         for (int i = 0; i < arr.length(); i++)
         {
             String post = arr.getString(i);
             System.out.println(post);
-        }
+        }*/
     }
     
 }
