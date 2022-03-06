@@ -24,14 +24,14 @@ public class getUpdate extends Thread{
     public Chat c;
     public From f;
     public Info inf;
-    public Messages m;
+    public sendMessages m;
     int arrl;
 
     public getUpdate() {
         c = new Chat();
         f = new From();
         inf = new Info();
-        m = new Messages();
+        m = new sendMessages();
         arrl = 0;
     }
     
@@ -107,24 +107,26 @@ public class getUpdate extends Thread{
 
 
                         JSONObject arrFrom = arr.getJSONObject(i).getJSONObject("message").getJSONObject("from");
-                        int idFrom = arrFrom.getInt("id");
+                        long idFrom = arrFrom.getLong("id");
                         boolean is_botFrom = arrFrom.getBoolean("is_bot");
                         String first_nameFrom = arrFrom.getString("first_name");
-                        String usernameFrom = arrFrom.getString("username");
                         String language_codeFrom = arrFrom.getString("language_code");
-                        f.popola(idFrom, is_botFrom, first_nameFrom, usernameFrom, language_codeFrom);
+                        f.popola(idFrom, is_botFrom, first_nameFrom, language_codeFrom);
 
                         JSONObject arrChat = arr.getJSONObject(i).getJSONObject("message").getJSONObject("chat");;
-                        int idChat = arrChat.getInt("id");
+                        long idChat = arrChat.getLong("id");
                         String first_nameChat = arrChat.getString("first_name");
-                        String usernameChat = arrChat.getString("username");
                         String type = arrChat.getString("type");
-                        c.popola(idChat, first_nameChat, usernameFrom, type);
+                        c.popola(idChat, first_nameChat, type);
 
 
                         inf.popola(update_id, message_id, date, text, inf, c);
                         System.out.println(inf.toString());
-                        //m.add(inf);
+                        try {
+                            m.add(inf);
+                        } catch (IOException ex) {
+                            Logger.getLogger(getUpdate.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             arrl = arr.length();

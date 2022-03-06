@@ -48,7 +48,7 @@ public class Info {
         this.c = c;
     }
 
-    public int getChatId()
+    public long getChatId()
     {
         return c.getId();
     }

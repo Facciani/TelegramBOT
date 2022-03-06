@@ -31,19 +31,18 @@ package TelegramAPI;
  * @author User
  */
 public class Chat {
-    private int id;
+    private long id;
     private String first_name;
-    private String username;
     private String type;
 
     public Chat() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -55,13 +54,6 @@ public class Chat {
         this.first_name = first_name;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getType() {
         return type;
@@ -72,10 +64,9 @@ public class Chat {
     }
     
     
-    public void popola(int id, String first_name,String username,String type){
+    public void popola(long id, String first_name,String type){
         this.id = id;
         this.first_name = first_name;
-        this.username = username;
         this.type = type;
     }
 }
