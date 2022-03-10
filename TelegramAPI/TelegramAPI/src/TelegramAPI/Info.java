@@ -60,7 +60,7 @@ public class Info {
     
     @Override
     public String toString() {
-        return "Info{" + "update_id=" + update_id + ", message_id=" + message_id + ", date=" + date + ", text=" + text + ", chat id=" + c.getId() + '}';
+        return "Info{" + "update_id=" + update_id + ", message_id=" + message_id + ", date=" + date + ", text=" + text + ", chat id=" + c.getId() + ", username=" + c.getFirst_name() +'}';
     }
 
     

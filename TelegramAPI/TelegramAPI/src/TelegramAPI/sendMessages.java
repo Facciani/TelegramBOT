@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONObject;
 
 /**
  *
@@ -31,6 +32,11 @@ public class sendMessages {
  
     public void send() throws IOException{
         this.message = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/sendMessage?chat_id="+list.get(list.size() - 1).getChatId()+"&text="+list.get(list.size() - 1).getText());
+        JSONObject obj = new JSONObject(message);
+        boolean result = obj.getBoolean("ok");
+        if(result){
+            System.out.println("reply_sent");
+        }
     }
     
     
