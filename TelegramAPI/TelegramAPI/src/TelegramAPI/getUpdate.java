@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
@@ -48,11 +50,12 @@ public class getUpdate extends Thread{
         return s;
     }
     
-    @Override
-    public void run() {
+    
+    public List<Info> get() {
         
-        while(true)
-        {
+            List<Info> listInfo = new ArrayList<Info>();
+        
+            
             String jsonString = "";
             try {
                 jsonString = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/getUpdates");
@@ -118,25 +121,16 @@ public class getUpdate extends Thread{
                         String first_nameChat = arrChat.getString("first_name");
                         String type = arrChat.getString("type");
                         c.popola(idChat, first_nameChat, type);
+                        
 
-
-                        inf.popola(update_id, message_id, date, text, inf, c);
+                        inf.popola(update_id, message_id, date, text, f, c);
+                        listInfo.add(inf);
                         System.out.println(inf.toString());
-                        try {
-                            m.add(inf);
-                        } catch (IOException ex) {
-                            Logger.getLogger(getUpdate.class.getName()).log(Level.SEVERE, null, ex);
-                        }
                     }
                 }
             arrl = arr.length();
             }
-            try {
-                Thread.sleep(150);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(getUpdate.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+            return listInfo;
     }
        
 }

@@ -20,8 +20,8 @@ public class BotPubblicita {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
         clearUpdates c = new clearUpdates();
-        getUpdate p = new getUpdate();
-        p.start();
+        getMessage m = new getMessage();
+        m.start();
         /*Test t = new Test();
         t.getUpdate();*/
     }

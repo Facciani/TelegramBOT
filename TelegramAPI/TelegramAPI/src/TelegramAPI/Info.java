@@ -35,11 +35,11 @@ public class Info {
     private int message_id;
     private int date;
     private String text;
-    private Info i;
+    private From i;
     private Chat c;
     
     
-    public void popola(int update_id,int message_id,int date,String text,Info i,Chat c){
+    public void popola(int update_id,int message_id,int date,String text,From i,Chat c){
         this.update_id = update_id;
         this.message_id = message_id;
         this.date = date;

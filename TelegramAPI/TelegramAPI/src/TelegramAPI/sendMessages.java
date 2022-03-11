@@ -22,21 +22,16 @@ import org.json.JSONObject;
  */
 public class sendMessages {
     
-    public List<Info> list=new ArrayList<Info>();  
     String message;
-    
-    public void add(Info i) throws IOException{
-        list.add(i);
-        send();
-    }
  
-    public void send() throws IOException{
-        this.message = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/sendMessage?chat_id="+list.get(list.size() - 1).getChatId()+"&text="+list.get(list.size() - 1).getText());
-        JSONObject obj = new JSONObject(message);
-        boolean result = obj.getBoolean("ok");
-        if(result){
-            System.out.println("reply_sent");
-        }
+    public void send(Info f) throws IOException{
+        
+            this.message = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/sendMessage?chat_id="+f.getChatId()+"&text="+f.getText());
+            JSONObject obj = new JSONObject(message);
+            boolean result = obj.getBoolean("ok");
+            if(result){
+                System.out.println("reply_sent");
+            }
     }
     
     
