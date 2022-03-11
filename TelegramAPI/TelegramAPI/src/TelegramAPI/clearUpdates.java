@@ -42,7 +42,7 @@ public class clearUpdates {
                 }
             }
         }
-        URL url = new URL("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/getUpdates?offset=" + (update_id));
+        URL url = new URL("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/getUpdates?offset=" + (update_id + 1));
         url.openStream();
     }
 
