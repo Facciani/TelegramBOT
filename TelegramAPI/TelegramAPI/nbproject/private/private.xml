@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/Info.java</file>
             <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/getUpdate.java</file>
-            <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/From.java</file>
-            <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/Chat.java</file>
-            <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/clearUpdates.java</file>
             <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/sendMessages.java</file>
+            <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/Info.java</file>
+            <file>file:/D:/Scuola/GitHub/TelegramBOT/TelegramAPI/TelegramAPI/src/TelegramAPI/clearUpdates.java</file>
         </group>
     </open-files>
 </project-private>

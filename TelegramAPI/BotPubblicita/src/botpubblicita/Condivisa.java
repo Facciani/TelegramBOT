@@ -7,7 +7,10 @@ package botpubblicita;
 
 import TelegramAPI.Info;
 import TelegramAPI.sendMessages;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
@@ -48,7 +51,7 @@ public class Condivisa {
                 }
             }
             try {
-                XMLSerialized(format);
+                XMLSerialized(format,f);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Condivisa.class.getName()).log(Level.SEVERE, null, ex);
             } catch (MalformedURLException ex) {
@@ -62,7 +65,7 @@ public class Condivisa {
         
     }
     
-    private void XMLSerialized(String format) throws FileNotFoundException, MalformedURLException, IOException, ParserConfigurationException, SAXException, SAXException{
+    private void XMLSerialized(String format,Info f) throws FileNotFoundException, MalformedURLException, IOException, ParserConfigurationException, SAXException, SAXException{
         
         URL url = new URL("https://nominatim.openstreetmap.org/search?q="+format+"&format=xml&addressdetails=1"); 
         Scanner inRemote = new Scanner(url.openStream());
@@ -74,6 +77,25 @@ public class Condivisa {
         wr.close();
         inRemote.close();
         String csv = d.parseDocument("document.xml");
+        if(csv == ""){
+            m.sendErr("Città selezionata non trovata, Riprovare",f);
+        }else{
+            StringBuffer sb = new StringBuffer();
+            sb.append(f.getChatId() + ";");
+            sb.append(csv);
+            String result = sb.toString();
+            csv(result);
+            String[] latlon = csv.split(";");
+            m.sendErr("Abbiamo trovato lacittà da te selezionata: "+latlon[3],f);
+            m.sendLocation(latlon[1], latlon[2], f);
+        }
+    }
+    
+    public void csv(String csv) throws IOException{
+        FileWriter fw = new FileWriter("temp.txt", true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(csv);
+        bw.close();
     }
     
     

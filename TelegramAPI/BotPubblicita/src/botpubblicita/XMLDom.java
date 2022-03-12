@@ -29,7 +29,7 @@ public class XMLDom {
         Document doc = dBuilder.parse(fileName);
         doc.getDocumentElement().normalize();
         NodeList nList = doc.getElementsByTagName("place");
-         
+
         for (int temp = 0; temp < nList.getLength(); temp++) {
             Node nNode = nList.item(temp);
             if (nNode.getNodeType() == Node.ELEMENT_NODE)
@@ -38,10 +38,12 @@ public class XMLDom {
                 if(eElement.hasAttribute("place_id"))
                 {
                     //System.out.println("place_id: " + eElement.getAttribute("place_id") + " display_name: " + eElement.getAttribute("display_name"));
-                    results += temp+1 + ";" + eElement.getAttribute("place_id") + ";" + eElement.getAttribute("display_name") +'\n';
+                    results += eElement.getAttribute("place_id") + ";" + eElement.getAttribute("lat") + ";" + eElement.getAttribute("lon") + ";"+ eElement.getAttribute("display_name") +'\n';
+                    return results;
                 }
             }
         }
-        return results;
+        
+        return "";
     }
 }

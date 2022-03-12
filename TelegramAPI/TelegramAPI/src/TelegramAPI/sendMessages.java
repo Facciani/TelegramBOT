@@ -24,9 +24,19 @@ public class sendMessages {
     
     String message;
  
-    public void send(Info f) throws IOException{
+    public void sendErr(String I, Info f) throws IOException{
         
-            this.message = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/sendMessage?chat_id="+f.getChatId()+"&text="+f.getText());
+            this.message = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/sendMessage?chat_id="+f.getChatId()+"&text="+I);
+            JSONObject obj = new JSONObject(message);
+            boolean result = obj.getBoolean("ok");
+            if(result){
+                System.out.println("reply_sent");
+            }
+    }
+    
+    public void sendLocation(String lat, String lon, Info f) throws IOException{
+        
+            this.message = getStringJson("https://api.telegram.org/bot5204845607:AAE6xBiiH10eZpHTje9jICsSDNfACYyzwSU/sendlocation?chat_id="+f.getChatId()+"&latitude="+lat+"&longitude="+lon);
             JSONObject obj = new JSONObject(message);
             boolean result = obj.getBoolean("ok");
             if(result){
