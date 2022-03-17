@@ -7,9 +7,11 @@ package botpubblicita;
 
 import TelegramAPI.Info;
 import TelegramAPI.sendMessages;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -92,10 +94,29 @@ public class Condivisa {
     }
     
     public void csv(String csv) throws IOException{
+        
+        String ris = "";
+        String[] c = csv.split(";");
+        File file = new File("temp.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st;
+
         FileWriter fw = new FileWriter("temp.txt", true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(csv);
         bw.close();
+        
+
+        /*bw.write(ris);
+        bw.close();*/
+
+            /*ris = csv;
+            FileWriter fw = new FileWriter("temp.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(ris);
+            bw.close();*/
+ 
+        
     }
     
     
