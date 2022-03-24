@@ -93,32 +93,46 @@ public class Condivisa {
         }
     }
     
+    // distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    
     public void csv(String csv) throws IOException{
         
-        String ris = "";
-        String[] c = csv.split(";");
-        File file = new File("temp.txt");
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String st;
-
-        FileWriter fw = new FileWriter("temp.txt", true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(csv);
-        bw.close();
+        String[] uno = csv.split(";");
         
-
-        /*bw.write(ris);
-        bw.close();*/
-
-            /*ris = csv;
+        File file = new File("temp.txt");
+        
+        if(file.length() == 0){
             FileWriter fw = new FileWriter("temp.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(ris);
-            bw.close();*/
- 
-        
-    }
-    
-    
-    
+            bw.write(csv);
+            bw.close();
+        }else{
+            List<String> g = new ArrayList<String>();
+            
+            String msg = "";
+            
+            FileReader fr=new FileReader("temp.txt");    
+            BufferedReader br=new BufferedReader(fr);    
+  
+            while ((msg = br.readLine()) != null) {
+
+                String[] due = msg.split(";");
+                if(due[0].equals(uno[0])){
+                    g.add(csv);
+                }else{
+                    g.add(msg);
+                }  
+            }
+            
+            FileWriter fw = new FileWriter("temp.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            for(int i = 0; i < g.size(); i++){
+                bw.write(g.get(i));
+            }
+            bw.close();
+        }  
+            
+            
+        }    
 }
